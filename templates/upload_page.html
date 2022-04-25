@@ -1,6 +1,5 @@
 {% extends 'base/home.html' %}
 
-{% block title %} XML to Json Converter Mascota {% endblock %}
 {% block content %}
 <div class="container">
     <div class="row">
@@ -29,12 +28,14 @@
                     {% endif %}
                     <!-- END Errors Section -->
 
-                    <label for="{{ form.xml_data.id_for_label }}">XML Data</label>
+                    <label for="{{ form.file.id_for_label }}">XML Data</label>
                     </br>
 
                     <div class="input-group mb-3">
                         <div class="custom-file">
-                            <input type="file" name="file" required="" id="id_file">
+                            <input type="file" name="file" required="" id="{{ form.file.id_for_label }}" class="custom-file-input"
+                                   onclick="document.getElementById('id_file').click();">
+                            <label id="file-name" class="custom-file-label">Not file selected...</label>
                         </div>
                     </div>
                     <hr>
@@ -47,3 +48,19 @@
     </div>
 </div>
 {% endblock %}
+
+{% block extrajs %}
+<script>
+    inputElement = document.getElementById('id_file')
+    labelElement = document.getElementById('file-name')
+    inputElement.onchange = function(event) {
+        var path = inputElement.value;
+        if (path) {
+            labelElement.innerHTML = path.split(/(\\|\/)/g).pop()
+        } else {
+            labelElement.innerHTML = 'File not selected'
+        }
+    }
+</script>
+{% endblock %}
+
