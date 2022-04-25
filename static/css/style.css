@@ -4231,7 +4231,7 @@ input[type=submit].btn-block {
 }
 
 .custom-file-input:lang(en)~.custom-file-label::after {
-	content: "Browse"
+	content: "Select a file"
 }
 
 .custom-file-input~.custom-file-label[data-browse]::after {
