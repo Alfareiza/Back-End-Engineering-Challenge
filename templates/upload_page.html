@@ -1,10 +1,49 @@
-<html>
-    <head></head>
-    <body>
-        <p>
-            Modify this page to include a form where users can submit an XML file.
-            When they click on the submit button, the XML file should be converted into JSON and
-            returned to the user.
-        </p>
-    </body>
-</html>
+{% extends 'base/home.html' %}
+
+{% block title %} XML to Json Converter Mascota {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <p style="margin-top: 2rem">
+                Upload your XML file and Press the Convert button. The output will display below the Convert button.
+            </p>
+            <form action="{% url 'home' %}" role="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <!-- Errors Section -->
+                    {% if form.errors.xml_data %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in form.errors.xml_data %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in form.non_field_errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <!-- END Errors Section -->
+
+                    <label for="{{ form.xml_data.id_for_label }}">XML Data</label>
+                    </br>
+
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input type="file" name="file" required="" id="id_file">
+                        </div>
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn btn-primary">
+                        Convert XML to JSON
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
