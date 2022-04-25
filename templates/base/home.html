@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+
+    {% block extrastatic %}
+    {% endblock %}
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{% static 'css/all.css' %}" crossorigin="anonymous">
+    <!-- Font Boostrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" crossorigin="anonymous">
+    <!-- Font Personal CSS -->
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{% block title%} XML to JSON Converter{% endblock %}</title>
+</head>
+<body class="footer-fijo">
+
+{% block header %}
+{% include 'base/header.html' %}
+{% endblock %}
+
+<div class="contenido-body">
+    {% block content %}
+    {% endblock %}
+</div>
+
+{% block extrajs %}
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+<!-- <script src="{% static 'js/javascript.js' %}" crossorigin="anonymous"></script>-->
+</body>
+</html>
